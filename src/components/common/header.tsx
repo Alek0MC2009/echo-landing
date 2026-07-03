@@ -2,6 +2,13 @@ import { ButtonTheme } from '../ui/button-theme'
 import { HeadphonesIcon } from 'lucide-react'
 import { Link } from 'react-router-dom'
 export function Header() {
+  const links = [
+    { name: 'Inicio', to: '/' },
+    { name: 'Tienda', to: '/shop' },
+    { name: 'Características', to: '/features' },
+    { name: 'Contacto', to: '/contact' },
+    { name: 'Soporte', to: '/support' },
+  ]
   return (
     <header className="sticky top-0 backdrop-blur-md bg-white/80 dark:bg-black/80 h-12 md:h-20 px-4 md:px-8 flex items-center justify-between border-b border-gray-400">
       <div
@@ -21,21 +28,16 @@ export function Header() {
       <div className="hidden md:flex gap-2 my-2">
         <nav>
           <ul className="flex gap-4 my-2">
-            <li className="hover:text-blue-500 transition-colors hover:underline">
-              <Link to="/">Inicio</Link>
-            </li>
-            <li className="hover:text-blue-500 transition-colors hover:underline">
-              <Link to="/shop">Tienda</Link>
-            </li>
-            <li className="hover:text-blue-500 transition-colors hover:underline">
-              <Link to="/features">Características</Link>
-            </li>
-            <li className="hover:text-blue-500 transition-colors hover:underline">
-              <Link to="/contact">Contacto</Link>
-            </li>
-            <li className="hover:text-blue-500 transition-colors hover:underline">
-              <Link to="/support">Soporte</Link>
-            </li>
+            {links.map((link) => {
+              return (
+                <li
+                  key={link.to}
+                  className="hover:text-blue-500 transition-colors hover:underline"
+                >
+                  <Link to={link.to}>{link.name}</Link>
+                </li>
+              )
+            })}
           </ul>
         </nav>
         <ButtonTheme />
